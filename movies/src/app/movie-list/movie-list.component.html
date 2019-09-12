@@ -1,0 +1,12 @@
+<div class="movie-list">
+  <p class="header">Movies</p>
+  <div class="list">
+    <mat-list role="list" *ngIf="movieList$ | async as data">
+      <ng-container *ngFor="let movie of data.results let i = index">
+        <mat-list-item role="listitem" *ngIf="i <= listLimit">{{movie.title}}</mat-list-item>
+      </ng-container>
+    </mat-list>
+  </div>
+  <button mat-button color="primary" (click)="loadMore()">Primary</button>
+</div>
+
