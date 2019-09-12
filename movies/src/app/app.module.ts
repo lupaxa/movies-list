@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {Route, RouterModule} from '@angular/router';
 import {MovieListComponent} from './movie-list/movie-list.component';
-import {MatButtonModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatListModule, MatIconModule} from '@angular/material';
 import {CookieService} from 'ngx-cookie-service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JwtHttpInterceptor} from './auth/jwt-http.interceptor';
@@ -28,7 +28,8 @@ const routes: Route[] = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [CookieService,      {
     provide: HTTP_INTERCEPTORS,

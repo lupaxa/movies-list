@@ -1,12 +1,28 @@
 <div class="movie-list">
-  <p class="header">Movies</p>
+  <p class="header">Upcoming Movies</p>
   <div class="list">
-    <mat-list role="list" *ngIf="movieList$ | async as data">
-      <ng-container *ngFor="let movie of data.results let i = index">
-        <mat-list-item role="listitem" *ngIf="i <= listLimit">{{movie.title}}</mat-list-item>
-      </ng-container>
-    </mat-list>
+    <ul class="list">
+        <ng-container *ngFor="let movie of movieService.movieList; let i = index">
+            <li class="listitem" role="listitem" *ngIf="i+1 <= listLimit">
+                <div class="movie-card">
+                    <div class="poster">
+                        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/'+ movie.poster_path" [alt]="movie.title">
+                    </div>
+                    <div class="main">
+                      <div class="info">
+                          <p class="title">{{movie.title}}</p>
+                          <mat-icon *ngIf='movieService.favoriteMovieList.includes(movie.id)' color="primary"  aria-hidden="false" aria-label="Example home icon">favorite</mat-icon>
+                      </div>
+                        <p class="overview">{{movie.overview}}</p>
+                        <div class="btn-group">
+                            <button mat-button mat-raised-button color="primary" (click)="addToFavorite(movie.id)">Add to Favorite</button>
+                        </div>
+                    </div>
+                  </div>
+            </li>
+          </ng-container>
+    </ul>
   </div>
-  <button mat-button color="primary" (click)="loadMore()">Primary</button>
+  <button mat-button mat-raised-button color="primary" (click)="loadMore()">More</button>
 </div>
 

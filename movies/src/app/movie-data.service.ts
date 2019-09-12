@@ -20,8 +20,8 @@ export class MovieDataService {
   // }
 
 
-  getMovies(page:string): Observable<MovieModel[]> {
-    const params = new HttpParams().set('api_key', 'a7946f8eb69db148e3850aac11332a98').set('page', page).set('page', page);
-    return this._httpClient.get<MovieModel[]>(`${this.url}/3/movie/upcoming`, {params});
+  getMovies(page: number): Observable<any> {
+    const params = new HttpParams().set('api_key', 'a7946f8eb69db148e3850aac11332a98').set('page', page.toString());
+    return this._httpClient.get<any[]>(`${this.url}/3/movie/upcoming`, {params});
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {MovieModel} from './movie.model';
 import {MovieDataService} from '../movie-data.service';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,25 +11,45 @@ import {MovieDataService} from '../movie-data.service';
 })
 export class MovieListComponent implements OnInit {
   public movieList$: Observable<MovieModel[]>;
+  // public movieList: MovieModel[];
   listLimit = 10;
   currentPage = 1;
-  constructor(private movieDataService: MovieDataService) { }
+  constructor(private movieDataService: MovieDataService, public movieService: MovieService) { }
 
   ngOnInit() {
-    this.getMovieList(this.currentPage);
+    this.movieService.getMoviePageList(this.currentPage);
   }
 
-  getMovieList(page?) :void {
-    this.movieList$ =  this.movieDataService.getMovies(page);
-  }
+  // get movieList(): MovieModel[] {
+  //   return this.movieService.movieList;
+  // }
 
   loadMore() {
-    const a = this.listLimit / 20;
-    if (a === 1 || (a % 2 === 0)) {
-      this.currentPage = this.currentPage + 1;
-      this.getMovieList(this.currentPage)
-    }
     this.listLimit = this.listLimit + 10;
+    this.currentPage++;
+    this.movieService.getMoviePageList(this.currentPage)
+  }
+
+  public addToFavorite(id){
+    this.movieService.favoriteMovieList.push(id);
+  }
+
+  trackByItems(){
+
+  }
+
+  trackById(index, item) {
+    return item.id;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
