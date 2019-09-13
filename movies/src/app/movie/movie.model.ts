@@ -14,3 +14,11 @@ export interface MovieModel {
   overview: string;
   release_date: string;
 }
+
+export interface UpcomingResponseModel {
+  results: MovieModel[];
+  dates: {};
+  page: number;
+  total_pages: number;
+  total_results: number;
+}

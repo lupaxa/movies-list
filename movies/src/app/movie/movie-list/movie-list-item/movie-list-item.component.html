@@ -1,0 +1,16 @@
+<div class="movie-card">
+  <div class="poster">
+    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/'+ data.poster_path" [alt]="data.title">
+  </div>
+  <div class="main">
+    <div class="info">
+      <p class="title">{{data.title}}</p>
+      <mat-icon *ngIf='isFavorite(data.id)' color="primary" aria-hidden="false" aria-label="Example home icon">favorite</mat-icon>
+    </div>
+    <div class="date">{{data.release_date | date: 'dd/MM/yyyy'}}</div>
+    <div class="btn-group" [ngSwitch]="isFavorite(data.id)">
+      <button *ngSwitchCase="true" mat-button mat-raised-button color="primary" (click)="removeFromFavorite(data.id)">Delete</button>
+      <button *ngSwitchDefault mat-button mat-raised-button color="primary" (click)="addToFavorite(data.id)">Add to Favorite</button>
+    </div>
+  </div>
+</div>

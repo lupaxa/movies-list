@@ -7,7 +7,7 @@ import {TokenService} from './token.service';
 import {AUTH_CONFIG} from './auth.config';
 
 @Injectable({providedIn: 'root'})
-export class JwtHttpInterceptor implements HttpInterceptor {
+export class TokenHttpInterceptor implements HttpInterceptor {
   constructor( private router: Router,
               private _tokenService: TokenService) {
   }

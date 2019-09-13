@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {Route, RouterModule} from '@angular/router';
-import {MovieListComponent} from './movie-list/movie-list.component';
-import {MatButtonModule, MatListModule, MatIconModule} from '@angular/material';
+import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {CookieService} from 'ngx-cookie-service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {JwtHttpInterceptor} from './auth/jwt-http.interceptor';
+import {TokenHttpInterceptor} from './auth/token-http-interceptor.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MovieModule} from './movie/movie.module';
+
 
 const routes: Route[] = [
   { path: '', redirectTo: 'movie', pathMatch: 'full'},
@@ -16,26 +17,24 @@ const routes: Route[] = [
   { path: '**', redirectTo: 'movie' }
 ];
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    MovieListComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    MatListModule,
-    MatButtonModule,
-    MatIconModule
+    FormsModule,
+    ReactiveFormsModule,
+    MovieModule
   ],
-  providers: [CookieService,      {
+  providers: [CookieService, {
     provide: HTTP_INTERCEPTORS,
-    useClass: JwtHttpInterceptor,
+    useClass: TokenHttpInterceptor,
     multi: true,
-  },],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

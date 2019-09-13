@@ -1,0 +1,21 @@
+<div class="movie-list">
+  <p class="header">Upcoming Movies</p>
+  <div class="list-box">
+    <div class="btn-toolbar">
+      <button mat-button mat-raised-button color="primary" (click)="openDialog()">Favorites {{favoriteMovieCounter}}</button>
+    </div>
+    <ul class="list" *ngIf="movieService.movieList.length">
+      <li class="list-item" role="listitem" *ngFor="let movie of movieService.movieList | slice:0:listLimit; trackBy: trackById">
+        <app-movie-list-item [data]="movie"></app-movie-list-item>
+      </li>
+    </ul>
+  </div>
+  <button mat-button mat-raised-button color="primary" (click)="loadMore()">More</button>
+
+  <!-- no data -->
+  <div *ngIf="movieService.movieList.length == 0">
+    <label>No data</label>
+  </div>
+
+</div>
+

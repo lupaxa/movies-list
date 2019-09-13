@@ -1,28 +1,10 @@
-.movie-list{
-  margin: 20px;
-}
-
-.header{
-  font-size: 24px;
-  font-family: CURSIVE;
-  margin: 0;
-}
-
-.list{
-  list-style: none;
-}
-
-.list-item{
-  margin-bottom: 15px;
-}
-
 .movie-card{
   max-width: 600px;
   display: flex;
 }
 
 .poster{
-  width: 200px;
+  width: 130px;
   flex-shrink: 0;
   padding: 15px;
 }
@@ -42,6 +24,7 @@
   margin-right: 10px;
 }
 
-.overview{
+.date{
   font-size: 14px;
+  margin-bottom: 15px;
 }

@@ -1,0 +1,19 @@
+.movie-list{
+  margin: 20px;
+}
+
+.header{
+  font-size: 24px;
+  font-family: CURSIVE;
+  margin: 0 0 15px 0;
+}
+
+.list{
+  list-style: none;
+}
+
+.list-item{
+  margin-bottom: 15px;
+}
+
+
